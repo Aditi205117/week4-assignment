@@ -1,0 +1,41 @@
+#include <stdio.h>
+int countSubarraysWithXOR(int arr[], int n, int B)
+{
+    int count = 0;
+    for (int i = 0; i < n; i++)
+{
+        int xorSum = 0;
+        for (int j = i; j < n; j++) 
+{
+            xorSum ^= arr[j]; 
+            if (xorSum == B)
+{
+                count++;
+            }
+        }
+    }
+
+    return count;
+}
+
+int main()
+{
+    int n, B;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements of the array: ", n);
+    for (int i = 0; i < n; i++)
+{
+        scanf("%d", &arr[i]);
+    }
+    printf("Enter the target XOR value (B): ");
+    scanf("%d", &B);
+    int result = countSubarraysWithXOR(arr, n, B);
+    printf("Total subarrays with XOR = %d: %d\n", B, result);
+
+    return 0;
+}
+
+
