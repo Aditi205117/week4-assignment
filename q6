@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[100];
+    int maxLength = 0, n, length, visited[256];
+
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    n = strlen(str); 
+    for (int i = 0; i < n; i++)
+{
+        for (int k = 0; k < 256; k++) 
+            visited[k] = 0;
+
+        length = 0;
+        for (int j = i; j < n; j++) 
+{
+            if (visited[(int)str[j]]) // If character repeats, stop
+                break;
+
+            visited[(int)str[j]] = 1; // Mark character as visited
+            length++; 
+
+            if (length > maxLength) // Update maximum length
+                maxLength = length;
+        }
+    }
+
+    printf("Longest unique substring length: %d\n", maxLength);
+    return 0;
+}
+
+
