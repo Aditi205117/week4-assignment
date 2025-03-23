@@ -1,0 +1,70 @@
+#include <stdio.h>
+void sortArray(int arr[], int n) 
+{
+    int i, j, minIndex, temp;
+    for (i = 0; i < n - 1; i++)
+{
+        minIndex = i;
+        for (j = i + 1; j < n; j++)
+{
+            if (arr[j] < arr[minIndex])
+{
+                minIndex = j;
+            }
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}
+int longestConsecutive(int arr[], int n)
+{
+    if (n == 0)
+    return 0; 
+    sortArray(arr, n); 
+  int maxLen = 1, currentLen = 1;
+  for (int i = 1; i < n; i++)
+{
+        if (arr[i] == arr[i - 1] + 1)
+{
+            currentLen++; 
+  } 
+       else if (arr[i] != arr[i - 1]) 
+{
+            
+            if (currentLen > maxLen)
+{
+                maxLen = currentLen;
+            }
+            currentLen = 1;
+        }
+    }
+    if (currentLen > maxLen)
+{
+        maxLen = currentLen;
+    }
+
+    return maxLen;
+}
+
+int main()
+{
+    int n;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d elements of the array: ", n);
+    for (int i = 0; i < n; i++) 
+{
+        scanf("%d", &arr[i]);
+    }
+
+    int result = longestConsecutive(arr, n);
+    printf("Length of longest consecutive sequence: %d\n", result);
+
+    return 0;
+}
+
+
+
